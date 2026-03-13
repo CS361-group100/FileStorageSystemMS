@@ -8,10 +8,10 @@ This MS users will be able to upload files and request to view them. Also, you w
 2. Open path to folder
 3. Run: 
 
-     g++ -D_WIN32_WINNT=0x0A00 main.cpp create/create_files.cpp delete/delete_file.cpp update/file_updator.cpp display/display_files.cpp -o microservice -lws2_32
+        g++ -D_WIN32_WINNT=0x0A00 main.cpp create/create_files.cpp delete/delete_file.cpp update/file_updator.cpp display/display_files.cpp -o microservice -lws2_32
 
 4. Then Run:
-    
+
         ./microservice
 
 5. Go into API tester (Postman recommended)
