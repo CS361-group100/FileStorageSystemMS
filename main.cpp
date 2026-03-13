@@ -7,6 +7,8 @@ Also, you will be able to use CRUD op on all avalible files.*/
 #include <string>
 #include <fstream>
 #include <filesystem>
+#include <json.hpp>
+#include "httplib.h"
 
 #include "content/file_contents.h"
 #include "create/create_files.h"
@@ -14,35 +16,44 @@ Also, you will be able to use CRUD op on all avalible files.*/
 #include "update/file_updator.h"
 #include "display/display_files.h"
 
+using json = nlohmann::json;
 
-std::string handleRequest(int option, std::string filename, std::string content)
-{
+int main() {
+
+    httplib::Server server;
     std::string folder = "files";
+
     std::filesystem::create_directories(folder);
 
-    if(option == 1)
-        return createFile(folder + "/" + filename, content);
+    server.Post("/file", [&](const httplib::Request& req, httplib::Response& res) {
 
-    else if(option == 2)
-        return updateFile(folder + "/" + filename, content);
+        json request = json::parse(req.body);
+        int option = request["option"];
 
-    else if(option == 3)
-        return deleteFile(folder + "/" + filename);
+        std::string filename = request.value("filename", "");
+        std::string content = request.value("content", "");
 
-    else if(option == 4)
-        return displayFiles(folder);
+        std::string result;
 
-    else
-        return "Invalid option";
-}
+        if(option == 1)
+            result = createFile(folder + "/" + filename, content);
 
-int main()
-{
-    int option = 4; // example from JSON { "option": 4 }
+        else if(option == 2)
+            result = updateFile(folder + "/" + filename, content);
 
-    std::string response = handleRequest(option, "", "");
+        else if(option == 3)
+            result = deleteFile(folder + "/" + filename);
 
-    std::cout << response;
+        else if(option == 4)
+            result = displayFiles(folder);
 
-    return 0;
+        json response;
+        response["result"] = result;
+
+        res.set_content(response.dump(4), "application/json");
+    });
+
+    std::cout << "Microservice running on port 8080...\n";
+
+    server.listen("localhost", 8080);
 }
