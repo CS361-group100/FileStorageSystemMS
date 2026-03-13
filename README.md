@@ -17,10 +17,10 @@ This MS users will be able to upload files and request to view them. Also, you w
 5. Go into API tester (Postman recommended)
 6. Enter into POST http://localhost:8180/file the body raw JSON section your json code ex.
 
-    {
+     {
      "option": 4,
      "folder": "testerFolder"
-    }
+     }
 
 7. Should return the result!
 
@@ -32,13 +32,13 @@ This MS users will be able to upload files and request to view them. Also, you w
 
         import requests
 
-    url = "http://localhost:8080/file"
+     url = "http://localhost:8080/file"
 
-    data = {
+     data = {
         "option": 4,
         "folder": "files"
-    }
+     }
 
-    response = requests.post(url, json=data)
+     response = requests.post(url, json=data)
 
-    print(response.json())
+     print(response.json())
