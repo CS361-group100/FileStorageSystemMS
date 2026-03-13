@@ -2,7 +2,7 @@
 
 This MS users will be able to upload files and request to view them. Also, you will be able to edit files through the CRUD MS.
 
-# for C users:
+# For C users:
 
 1. Open MSYS2 UCRT64
 2. Open path to folder
