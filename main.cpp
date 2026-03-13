@@ -7,7 +7,7 @@ Also, you will be able to use CRUD op on all avalible files.*/
 #include <string>
 #include <fstream>
 #include <filesystem>
-#include <json.hpp>
+#include "json.hpp"
 #include "httplib.h"
 
 #include "content/file_contents.h"
@@ -32,6 +32,7 @@ int main() {
 
         std::string filename = request.value("filename", "");
         std::string content = request.value("content", "");
+        std::string folder = request.value("folder", "files"); // default if not provided
 
         std::string result;
 

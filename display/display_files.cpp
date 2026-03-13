@@ -13,7 +13,7 @@ std::string displayFiles(std::string folderPath)
 
         for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
             if (entry.is_regular_file()) {                   // Only list files, not subfolders
-                result += entry.path().filename().string() + "\n";
+                result += entry.path().filename().string() + "\n ";
             }
         }
 
