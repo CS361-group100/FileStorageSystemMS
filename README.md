@@ -11,16 +11,16 @@ This MS users will be able to upload files and request to view them. Also, you w
      g++ -D_WIN32_WINNT=0x0A00 main.cpp create/create_files.cpp delete/delete_file.cpp update/file_updator.cpp display/display_files.cpp -o microservice -lws2_32
 
 4. Then Run:
-
-    ./microservice
+    
+        ./microservice
 
 5. Go into API tester (Postman recommended)
 6. Enter into POST http://localhost:8180/file the body raw JSON section your json code ex.
 
-     {
-     "option": 4,
-     "folder": "testerFolder"
-     }
+        {
+            "option": 4,
+            "folder": "testerFolder"
+        }
 
 7. Should return the result!
 
@@ -32,13 +32,13 @@ This MS users will be able to upload files and request to view them. Also, you w
 
         import requests
 
-     url = "http://localhost:8080/file"
+        url = "http://localhost:8080/file"
 
-     data = {
-        "option": 4,
-        "folder": "files"
-     }
+        data = {
+            "option": 4,
+            "folder": "files"
+        }
 
-     response = requests.post(url, json=data)
+        response = requests.post(url, json=data)
 
-     print(response.json())
+        print(response.json())
